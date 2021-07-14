@@ -2,12 +2,15 @@ package com.effective.ecommerce.hexagonal.order.domain;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 import static java.math.BigDecimal.ZERO;
 
 public record OrderDescriptor(
-        @NotNull Order order,
+        @NotNull long id,
+        @NotNull LocalDate dateCreated,
+        @NotNull  OrderStatus status,
         @NotNull List<OrderItemDescriptor> orderItems
 ) {
     public BigDecimal getTotalOrderPrice() {

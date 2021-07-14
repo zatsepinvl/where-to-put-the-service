@@ -1,0 +1,39 @@
+description: Get all products
+name: get_all_products
+priority: 1
+
+request:
+  url: /products
+  method: GET
+
+response:
+  status: 200
+  body:
+    - id: "1"
+      name: "TV Set"
+      price: "300.51"
+      pictureUrl: "http://placehold.it/200x100"
+    - id: "2"
+      name: "Game Console"
+      price: "200"
+      pictureUrl: "http://placehold.it/200x100"
+    - id: "3"
+      name: "Sofa"
+      price: "100"
+      pictureUrl: "http://placehold.it/200x100"
+    - id: "4"
+      name: "Icecream"
+      price: "5"
+      pictureUrl: "http://placehold.it/200x100"
+    - id: "5"
+      name: "Beer"
+      price: "3"
+      pictureUrl: "http://placehold.it/200x100"
+    - id: "6"
+      name: "Phone"
+      price: "500"
+      pictureUrl: "http://placehold.it/200x100"
+    - id: "7"
+      name: "Watch"
+      price: "30"
+      pictureUrl: "http://placehold.it/200x100"

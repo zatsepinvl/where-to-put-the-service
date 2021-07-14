@@ -10,5 +10,5 @@ public interface ProductEntityMapper {
 
     Product toProduct(ProductEntity productEntity);
 
-    Iterable<Product> fromProducts(Iterable<ProductEntity> productEntities);
+    Iterable<Product> toProducts(Iterable<ProductEntity> productEntity);
 }

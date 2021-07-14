@@ -19,11 +19,8 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.Collections;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasItem;
-import static org.hamcrest.Matchers.hasProperty;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @EnablePostgresTestcontainer
@@ -47,17 +44,19 @@ public class EcommerceAppHexagonalIntTest {
                 }
         );
         Iterable<Product> products = responseEntity.getBody();
-        Assertions
-                .assertThat(products)
-                .hasSize(7);
 
-        assertThat(products, hasItem(hasProperty("name", is("TV Set"))));
-        assertThat(products, hasItem(hasProperty("name", is("Game Console"))));
-        assertThat(products, hasItem(hasProperty("name", is("Sofa"))));
-        assertThat(products, hasItem(hasProperty("name", is("Icecream"))));
-        assertThat(products, hasItem(hasProperty("name", is("Beer"))));
-        assertThat(products, hasItem(hasProperty("name", is("Phone"))));
-        assertThat(products, hasItem(hasProperty("name", is("Watch"))));
+        assertThat(products)
+                .hasSize(7)
+                .extracting(Product::name)
+                .containsExactlyInAnyOrder(
+                        "TV Set",
+                        "Game Console",
+                        "Sofa",
+                        "Icecream",
+                        "Beer",
+                        "Phone",
+                        "Watch"
+                );
     }
 
     @Test
@@ -71,9 +70,7 @@ public class EcommerceAppHexagonalIntTest {
         );
 
         Iterable<OrderDescriptor> orders = responseEntity.getBody();
-        Assertions
-                .assertThat(orders)
-                .hasSize(0);
+        assertThat(orders).hasSize(0);
     }
 
     @Test
@@ -85,13 +82,12 @@ public class EcommerceAppHexagonalIntTest {
         );
         OrderDescriptor orderDescriptor = postResponse.getBody();
 
-        Assertions
-                .assertThat(postResponse.getStatusCode())
+        assertThat(postResponse.getStatusCode())
                 .isEqualByComparingTo(HttpStatus.CREATED);
 
-        assertThat(orderDescriptor, notNullValue());
-        assertThat(orderDescriptor.order().status(),  is(OrderStatus.CREATED));
-        assertThat(orderDescriptor.orderItems().get(0).quantity(), is(2));
+        assertThat(orderDescriptor).isNotNull();
+        assertThat(orderDescriptor.status()).isEqualTo(OrderStatus.CREATED);
+        assertThat(orderDescriptor.orderItems().get(0).quantity()).isEqualTo(2);
     }
 
     private String severUrl() {

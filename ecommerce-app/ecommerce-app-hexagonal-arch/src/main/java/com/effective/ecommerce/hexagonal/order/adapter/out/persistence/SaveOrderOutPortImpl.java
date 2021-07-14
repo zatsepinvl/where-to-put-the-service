@@ -20,6 +20,9 @@ public class SaveOrderOutPortImpl implements SaveOrderOutPort {
     @Override
     public Order saveOrder(Order order) {
         var entity = orderEntityMapper.fromOrder(order);
+        if (order.id() == -1) {
+            entity.setId(null);
+        }
         entity = orderRepository.save(entity);
         return orderEntityMapper.toOrder(entity);
     }

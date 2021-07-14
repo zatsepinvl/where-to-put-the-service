@@ -1,6 +1,8 @@
-package com.effective.ecommerce.hexagonal.product.adapter.out.persistence;
+package com.effective.ecommerce.yetanother.product.domain.impl;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -10,6 +12,8 @@ import java.math.BigDecimal;
 @Entity(name = "products")
 @Data
 @ToString(onlyExplicitlyIncluded = true)
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductEntity {
 
     @Id

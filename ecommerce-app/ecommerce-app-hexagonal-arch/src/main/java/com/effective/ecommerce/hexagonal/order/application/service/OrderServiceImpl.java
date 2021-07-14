@@ -27,7 +27,7 @@ class OrderServiceImpl implements CreateOrderUseCase, ReadOrderUseCase {
 
     @Override
     public OrderDescriptor createOrder(CreateOrderCommand command) {
-        var newOrder = new Order(null, LocalDate.now(), OrderStatus.CREATED);
+        var newOrder = new Order(-1, LocalDate.now(), OrderStatus.CREATED);
         final var order = saveOrderOutPort.saveOrder(newOrder);
         var orderItems = command.orderItems().stream()
                 .map(createOrderItemCommand -> {
@@ -40,7 +40,7 @@ class OrderServiceImpl implements CreateOrderUseCase, ReadOrderUseCase {
                 .toList();
         orderItems = saveOrderOutPort.saveOrderItems(order, orderItems);
         var orderItemDescriptors = getOrderItemDescriptors(orderItems);
-        return new OrderDescriptor(order, orderItemDescriptors);
+        return new OrderDescriptor(order.id(), order.dateCreated(), order.status(), orderItemDescriptors);
     }
 
     @Override

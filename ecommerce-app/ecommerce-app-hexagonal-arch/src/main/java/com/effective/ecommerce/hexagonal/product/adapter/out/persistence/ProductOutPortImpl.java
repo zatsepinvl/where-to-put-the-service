@@ -24,10 +24,8 @@ public class ProductOutPortImpl implements SaveProductOutPort, ReadProductOutPor
 
     @Override
     public Iterable<Product> getAllProducts() {
-        var products = productRepository.findAll();
-        return StreamSupport.stream(products.spliterator(), false)
-                .map(entityMapper::toProduct)
-                .toList();
+        var entities = productRepository.findAll();
+        return entityMapper.toProducts(entities);
     }
 
     @Override
