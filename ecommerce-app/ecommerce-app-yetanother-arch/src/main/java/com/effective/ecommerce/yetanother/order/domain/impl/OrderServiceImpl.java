@@ -2,16 +2,13 @@ package com.effective.ecommerce.yetanother.order.domain.impl;
 
 import com.effective.ecommerce.yetanother.exception.domain.ResourceNotFoundException;
 import com.effective.ecommerce.yetanother.order.domain.api.*;
-import com.effective.ecommerce.yetanother.order.persistence.OrderEntity;
-import com.effective.ecommerce.yetanother.order.persistence.OrderItemEntity;
-import com.effective.ecommerce.yetanother.order.persistence.OrderItemPK;
 import com.effective.ecommerce.yetanother.product.domain.api.ReadProductService;
-import com.effective.ecommerce.yetanother.product.persistence.ProductEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.stream.StreamSupport;
 
@@ -28,7 +25,7 @@ class OrderServiceImpl implements WriteOrderService, ReadOrderService {
     public Order createOrder(CreateOrderCommand command) {
         var newOrderEntity = OrderEntity.builder()
                 .status(OrderStatus.CREATED)
-                .createdAt(LocalDate.now())
+                .createdAt(ZonedDateTime.now())
                 .build();
         final var orderEntity = orderRepository.save(newOrderEntity);
         var orderItemEntities = command.orderItems().stream()
@@ -37,9 +34,7 @@ class OrderServiceImpl implements WriteOrderService, ReadOrderService {
                     if (!readProductService.doesProductExist(productId)) {
                         throw new ResourceNotFoundException("Product not found with id " + productId);
                     }
-                    var productEntity = new ProductEntity();
-                    productEntity.setId(productId);
-                    var orderItemPk = new OrderItemPK(orderEntity, productEntity);
+                    var orderItemPk = new OrderItemPK(orderEntity.getId(), productId);
                     return new OrderItemEntity(orderItemPk, createOrderItemCommand.quantity());
                 })
                 .toList();
@@ -68,7 +63,7 @@ class OrderServiceImpl implements WriteOrderService, ReadOrderService {
     private List<OrderItem> fromOrderItemEntities(Iterable<OrderItemEntity> orderItems) {
         return StreamSupport.stream(orderItems.spliterator(), false)
                 .map(orderItem -> {
-                    var product = readProductService.getProduct(orderItem.getPk().getProduct().getId());
+                    var product = readProductService.getProduct(orderItem.getPk().getProductId());
                     return new OrderItem(product, orderItem.getQuantity());
                 })
                 .toList();

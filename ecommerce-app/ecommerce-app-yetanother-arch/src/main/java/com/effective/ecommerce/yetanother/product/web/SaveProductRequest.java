@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Data
-public class SaveProductRequest {
+class SaveProductRequest {
     @JsonIgnore
     long productId;
     @NotBlank String name;

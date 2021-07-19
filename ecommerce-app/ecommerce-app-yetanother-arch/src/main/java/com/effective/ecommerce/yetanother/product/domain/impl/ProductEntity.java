@@ -1,4 +1,4 @@
-package com.effective.ecommerce.yetanother.product.persistence;
+package com.effective.ecommerce.yetanother.product.domain.impl;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.ZonedDateTime;
 
 /**
  *
@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @ToString(onlyExplicitlyIncluded = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductEntity {
+class ProductEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +30,7 @@ public class ProductEntity {
     private BigDecimal price;
 
     @Basic(optional = false)
-    private LocalDate createdAt;
+    private ZonedDateTime createdAt;
 
     private String pictureUrl;
 

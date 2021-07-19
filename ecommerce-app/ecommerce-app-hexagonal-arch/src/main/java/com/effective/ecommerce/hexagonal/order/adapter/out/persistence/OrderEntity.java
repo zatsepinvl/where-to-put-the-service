@@ -8,10 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -27,5 +24,6 @@ public class OrderEntity {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dateCreated;
 
+    @Enumerated(EnumType.STRING)
     private OrderStatus status;
 }

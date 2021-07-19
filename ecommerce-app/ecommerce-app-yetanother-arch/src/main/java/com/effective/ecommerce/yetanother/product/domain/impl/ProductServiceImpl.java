@@ -3,14 +3,14 @@ package com.effective.ecommerce.yetanother.product.domain.impl;
 import com.effective.ecommerce.yetanother.exception.domain.ResourceNotFoundException;
 import com.effective.ecommerce.yetanother.product.domain.api.Product;
 import com.effective.ecommerce.yetanother.product.domain.api.ReadProductService;
-import com.effective.ecommerce.yetanother.product.domain.api.command.CreateProductCommand;
 import com.effective.ecommerce.yetanother.product.domain.api.WriteProductService;
+import com.effective.ecommerce.yetanother.product.domain.api.command.CreateProductCommand;
 import com.effective.ecommerce.yetanother.product.domain.api.command.UpdateProductCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
+import java.time.ZonedDateTime;
 
 @Service
 @Transactional
@@ -41,7 +41,7 @@ class ProductServiceImpl implements ReadProductService, WriteProductService {
     @Override
     public Product createProduct(CreateProductCommand createCommand) {
         var entity = entityMapper.fromProductCreateCommand(createCommand);
-        entity.setCreatedAt(LocalDate.now());
+        entity.setCreatedAt(ZonedDateTime.now());
         entity = productRepository.save(entity);
         return entityMapper.toProduct(entity);
     }

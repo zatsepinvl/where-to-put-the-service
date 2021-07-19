@@ -12,7 +12,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 @RestController
 @RequestMapping("/orders")
 @RequiredArgsConstructor
-public class OrderController {
+class OrderController {
 
     private final WriteOrderService writeOrderService;
     private final ReadOrderService readOrderService;

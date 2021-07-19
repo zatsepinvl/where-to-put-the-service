@@ -1,4 +1,4 @@
-package com.effective.ecommerce.testutils;
+package com.effective.ecommerce.yetanother.testutils.postgres;
 
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestPropertySource;

@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+import static org.springframework.http.HttpStatus.CREATED;
+
 @RestController
 @RequestMapping("/products")
 @RequiredArgsConstructor
 @Validated
-public class ProductController {
+class ProductController {
 
     private final ReadProductService readProductService;
     private final WriteProductService writeProductService;
@@ -25,9 +27,15 @@ public class ProductController {
     }
 
     @PostMapping
+    @ResponseStatus(CREATED)
     public Product createProduct(@Valid @RequestBody SaveProductRequest request) {
         var command = requestMapper.toCreateProductCommand(request);
         return writeProductService.createProduct(command);
+    }
+
+    @GetMapping("/{productId}")
+    public Product createProduct(@PathVariable long productId) {
+        return readProductService.getProduct(productId);
     }
 
     @PutMapping("/{productId}")

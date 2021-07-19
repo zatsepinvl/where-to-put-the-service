@@ -1,4 +1,4 @@
-package com.effective.ecommerce.yetanother.order.persistence;
+package com.effective.ecommerce.yetanother.order.domain.impl;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderItemEntity {
+class OrderItemEntity {
 
     @EmbeddedId
     @JsonIgnore

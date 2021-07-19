@@ -2,14 +2,14 @@ package com.effective.ecommerce.yetanother.order.domain.api;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import static java.math.BigDecimal.ZERO;
 
 public record Order(
         @NotNull long id,
-        @NotNull LocalDate createdAt,
+        @NotNull ZonedDateTime createdAt,
         @NotNull OrderStatus status,
         @NotNull List<OrderItem> orderItems
 ) {
