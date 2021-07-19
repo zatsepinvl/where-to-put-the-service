@@ -48,6 +48,7 @@ def postgresqlVersion = "42.1.4"
 def testcontainersVersion = "1.15.2"
 def mapstructVersion = "1.4.2.Final"
 def cloudContractVersion = "3.0.3"
+def archunitVersion= "0.17.0"
 
 dependencies {
     implementation "org.springframework.boot:spring-boot-starter-web"
@@ -68,6 +69,7 @@ dependencies {
     testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+    testImplementation "com.tngtech.archunit:archunit-junit5:$archunitVersion"
 
     intTestImplementation "org.springframework.boot:spring-boot-starter-test"
     intTestImplementation "org.testcontainers:testcontainers"
