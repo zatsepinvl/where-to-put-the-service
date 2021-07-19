@@ -3,10 +3,11 @@ package com.effective.ecommerce.yetanother.product.domain.impl;
 import com.effective.ecommerce.yetanother.product.domain.api.Product;
 import com.effective.ecommerce.yetanother.product.domain.api.command.CreateProductCommand;
 import com.effective.ecommerce.yetanother.product.domain.api.command.UpdateProductCommand;
+import com.effective.ecommerce.yetanother.product.persistence.ProductEntity;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface ProductEntityMapper {
+interface ProductEntityMapper {
 
     ProductEntity fromProductCreateCommand(CreateProductCommand createProductCommand);
 

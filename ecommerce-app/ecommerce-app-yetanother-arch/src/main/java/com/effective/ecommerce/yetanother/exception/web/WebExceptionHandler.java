@@ -1,6 +1,6 @@
 package com.effective.ecommerce.yetanother.exception.web;
 
-import com.effective.ecommerce.yetanother.exception.application.ResourceNotFoundException;
+import com.effective.ecommerce.yetanother.exception.domain.ResourceNotFoundException;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

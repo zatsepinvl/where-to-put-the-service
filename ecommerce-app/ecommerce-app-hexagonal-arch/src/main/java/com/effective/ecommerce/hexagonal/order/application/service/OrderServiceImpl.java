@@ -2,9 +2,8 @@ package com.effective.ecommerce.hexagonal.order.application.service;
 
 import com.effective.ecommerce.hexagonal.exception.application.ResourceNotFoundException;
 import com.effective.ecommerce.hexagonal.order.application.port.in.CreateOrderCommand;
-import com.effective.ecommerce.hexagonal.order.application.port.in.CreateOrderUseCase;
+import com.effective.ecommerce.hexagonal.order.application.port.in.WriteOrderUseCase;
 import com.effective.ecommerce.hexagonal.order.application.port.in.ReadOrderUseCase;
-import com.effective.ecommerce.hexagonal.order.application.port.out.ReadOrderOutPort;
 import com.effective.ecommerce.hexagonal.order.application.port.out.SaveOrderOutPort;
 import com.effective.ecommerce.hexagonal.order.domain.*;
 import com.effective.ecommerce.hexagonal.product.application.port.in.ReadProductUseCase;
@@ -12,14 +11,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
-class OrderServiceImpl implements CreateOrderUseCase, ReadOrderUseCase {
+class OrderServiceImpl implements WriteOrderUseCase, ReadOrderUseCase {
 
     private final ReadProductUseCase readProductUseCase;
     private final SaveOrderOutPort saveOrderOutPort;

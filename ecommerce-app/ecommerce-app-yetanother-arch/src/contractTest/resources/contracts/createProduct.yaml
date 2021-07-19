@@ -1,0 +1,22 @@
+name: createProduct
+priority: 1
+request:
+  url: /products
+  method: POST
+  body:
+    name: "iPhone"
+    price: "300.51"
+    pictureUrl: "http://placehold.it/200x100"
+
+response:
+  status: 200
+  body:
+    id:
+    name: "iPhone"
+    price: "300.51"
+    pictureUrl: "http://placehold.it/200x100"
+  matchers:
+    body:
+      - path: $.id
+        type: by_regex
+        value: "[0-9]{3}"

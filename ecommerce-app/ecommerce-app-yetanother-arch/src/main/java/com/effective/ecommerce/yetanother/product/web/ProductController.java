@@ -8,7 +8,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 @RestController
 @RequestMapping("/products")
@@ -21,18 +20,18 @@ public class ProductController {
     private final ProductRequestMapper requestMapper;
 
     @GetMapping
-    public @NotNull Iterable<Product> getProducts() {
+    public Iterable<Product> getProducts() {
         return readProductService.getAllProducts();
     }
 
     @PostMapping
-    public @NotNull Product createProduct(@Valid SaveProductRequest request) {
+    public Product createProduct(@Valid @RequestBody SaveProductRequest request) {
         var command = requestMapper.toCreateProductCommand(request);
         return writeProductService.createProduct(command);
     }
 
     @PutMapping("/{productId}")
-    public @NotNull Product updateProduct(@RequestBody @Valid SaveProductRequest request, @PathVariable long productId) {
+    public Product updateProduct(@Valid @RequestBody SaveProductRequest request, @PathVariable long productId) {
         request.setProductId(productId);
         var command = requestMapper.toUpdateProductCommand(request);
         return writeProductService.updateProduct(command);
