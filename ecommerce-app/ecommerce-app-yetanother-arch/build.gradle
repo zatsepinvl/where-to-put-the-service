@@ -11,7 +11,11 @@ version = "0.0.1-SNAPSHOT"
 sourceCompatibility = "16"
 
 contracts {
-    baseClassForTests = "com.effective.ecommerce.yetanother.ContractTestBaseClass"
+    basePackageForTests "com.effective.ecommerce.yetanother"
+    baseClassMappings {
+        baseClassMapping(".*product.*": "com.effective.ecommerce.yetanother.ProductContractTestBase")
+        baseClassMapping(".*order.*": "com.effective.ecommerce.yetanother.OrderContractTestBase")
+    }
 }
 
 def flywayVersion = "7.11.2"

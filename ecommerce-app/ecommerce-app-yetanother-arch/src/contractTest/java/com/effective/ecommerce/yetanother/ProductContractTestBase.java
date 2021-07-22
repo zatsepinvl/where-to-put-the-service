@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
 
@@ -20,7 +21,7 @@ import static org.mockito.ArgumentMatchers.any;
 
 @WebMvcTest(controllers = ProductController.class)
 @ContextConfiguration
-public abstract class ContractTestBaseClass {
+public abstract class ProductContractTestBase {
 
     @TestConfiguration
     @ComponentScan("com.effective.ecommerce.yetanother.product.web")
@@ -28,7 +29,7 @@ public abstract class ContractTestBaseClass {
     }
 
     @Autowired
-    ProductController productController;
+    MockMvc mockMvc;
 
     @MockBean
     ReadProductService readProductService;
@@ -38,7 +39,7 @@ public abstract class ContractTestBaseClass {
 
     @BeforeEach
     public void setup() {
-        RestAssuredMockMvc.standaloneSetup(productController);
+        RestAssuredMockMvc.mockMvc(mockMvc);
 
         Mockito.when(writeProductService.createProduct(any()))
                 .thenReturn(new Product(
