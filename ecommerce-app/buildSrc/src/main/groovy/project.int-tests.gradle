@@ -1,0 +1,57 @@
+plugins {
+    id "idea"
+}
+
+sourceSets {
+    intTest {
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+
+idea {
+    module {
+        testSourceDirs += project.sourceSets.contractTest.java.srcDirs
+        testSourceDirs += project.sourceSets.contractTest.resources.srcDirs
+
+        testSourceDirs += project.sourceSets.intTest.java.srcDirs
+        testSourceDirs += project.sourceSets.intTest.resources.srcDirs
+    }
+}
+
+configurations {
+    intTestImplementation.extendsFrom implementation
+    intTestRuntimeOnly.extendsFrom runtimeOnly
+    intTestCompileOnly.extendsFrom compileOnly
+    intTestAnnotationProcessor.extendsFrom annotationProcessor
+}
+
+def testcontainersVersion = "1.15.2"
+
+dependencies {
+    intTestImplementation "org.springframework.boot:spring-boot-starter-test"
+    intTestImplementation "org.testcontainers:testcontainers"
+    intTestImplementation "org.testcontainers:postgresql"
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.testcontainers:testcontainers-bom:$testcontainersVersion"
+    }
+}
+
+tasks.register("integrationTest", Test) {
+    description = "Runs integration tests."
+    group = "verification"
+
+    testClassesDirs = sourceSets.intTest.output.classesDirs
+    classpath = sourceSets.intTest.runtimeClasspath
+
+    shouldRunAfter test
+}
+
+check.dependsOn integrationTest
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+}

@@ -1,6 +1,6 @@
 plugins {
-    id "idea"
-    id "java"
+    id "project.spring-jpa"
+    id "project.int-tests"
     id "org.springframework.boot" version "2.5.2"
     id "io.spring.dependency-management" version "1.0.11.RELEASE"
     id "org.springframework.cloud.contract" version "3.0.3"
@@ -10,94 +10,15 @@ group = "com.effective"
 version = "0.0.1-SNAPSHOT"
 sourceCompatibility = "16"
 
-sourceSets {
-    intTest {
-        compileClasspath += sourceSets.main.output
-        runtimeClasspath += sourceSets.main.output
-    }
-}
-
-idea {
-    module {
-        testSourceDirs += project.sourceSets.contractTest.java.srcDirs
-        testSourceDirs += project.sourceSets.contractTest.resources.srcDirs
-
-        testSourceDirs += project.sourceSets.intTest.java.srcDirs
-        testSourceDirs += project.sourceSets.intTest.resources.srcDirs
-    }
-}
-
 contracts {
     baseClassForTests = "com.effective.ecommerce.yetanother.ContractTestBaseClass"
 }
 
-repositories {
-    mavenCentral()
-}
-
-configurations {
-    compileOnly.extendsFrom annotationProcessor
-    intTestImplementation.extendsFrom implementation
-    intTestRuntimeOnly.extendsFrom runtimeOnly
-    intTestCompileOnly.extendsFrom compileOnly
-    intTestAnnotationProcessor.extendsFrom annotationProcessor
-}
-
-def junitVersion = "5.7.0"
-def postgresqlVersion = "42.1.4"
-def testcontainersVersion = "1.15.2"
-def mapstructVersion = "1.4.2.Final"
 def flywayVersion = "7.11.2"
-def cloudContractVersion = "3.0.3"
-def archunitVersion= "0.17.0"
-
 
 dependencies {
-    implementation "org.springframework.boot:spring-boot-starter-web"
-    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
-    implementation "org.springframework.boot:spring-boot-starter-validation"
-    implementation "org.mapstruct:mapstruct:$mapstructVersion"
     implementation "org.flywaydb:flyway-core:$flywayVersion"
-
-    annotationProcessor "org.projectlombok:lombok"
-    annotationProcessor "org.mapstruct:mapstruct-processor:$mapstructVersion"
-    compileOnly "org.projectlombok:lombok"
-    compileOnly "org.postgresql:postgresql:$postgresqlVersion"
-
-    runtimeOnly "org.postgresql:postgresql:42.1.4"
-
-    developmentOnly "org.springframework.boot:spring-boot-devtools"
-
-    testImplementation "org.springframework.boot:spring-boot-starter-test"
-    testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
-    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
-    testImplementation "com.tngtech.archunit:archunit-junit5:$archunitVersion"
-
-    intTestImplementation "org.springframework.boot:spring-boot-starter-test"
-    intTestImplementation "org.testcontainers:testcontainers"
-    intTestImplementation "org.testcontainers:postgresql"
+    testImplementation "org.springframework.cloud:spring-cloud-starter-contract-verifier"
 }
 
-dependencyManagement {
-    imports {
-        mavenBom "org.testcontainers:testcontainers-bom:$testcontainersVersion"
-        mavenBom "org.springframework.cloud:spring-cloud-contract-dependencies:$cloudContractVersion"
-    }
-}
 
-tasks.register("integrationTest", Test) {
-    description = "Runs integration tests."
-    group = "verification"
-
-    testClassesDirs = sourceSets.intTest.output.classesDirs
-    classpath = sourceSets.intTest.runtimeClasspath
-
-    shouldRunAfter test
-}
-
-check.dependsOn integrationTest
-
-tasks.withType(Test) {
-    useJUnitPlatform()
-}

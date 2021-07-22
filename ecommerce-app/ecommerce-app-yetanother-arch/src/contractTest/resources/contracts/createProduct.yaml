@@ -3,20 +3,24 @@ priority: 1
 request:
   url: /products
   method: POST
+  headers:
+    Content-Type: application/json
   body:
     name: "iPhone"
     price: "300.51"
     pictureUrl: "http://placehold.it/200x100"
 
 response:
-  status: 200
+  status: 201
   body:
-    id:
+    id: "1"
     name: "iPhone"
     price: "300.51"
     pictureUrl: "http://placehold.it/200x100"
+  headers:
+    Content-Type: application/json
   matchers:
     body:
       - path: $.id
         type: by_regex
-        value: "[0-9]{3}"
+        value: "[0-9]+"

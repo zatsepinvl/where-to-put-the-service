@@ -15,7 +15,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 @RequestMapping("/products")
 @RequiredArgsConstructor
 @Validated
-class ProductController {
+public class ProductController {
 
     private final ReadProductService readProductService;
     private final WriteProductService writeProductService;

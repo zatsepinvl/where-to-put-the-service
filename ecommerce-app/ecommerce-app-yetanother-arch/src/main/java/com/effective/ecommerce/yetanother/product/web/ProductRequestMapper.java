@@ -5,7 +5,7 @@ import com.effective.ecommerce.yetanother.product.domain.api.command.UpdateProdu
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-interface ProductRequestMapper {
+public interface ProductRequestMapper {
     CreateProductCommand toCreateProductCommand(SaveProductRequest request);
 
     UpdateProductCommand toUpdateProductCommand(SaveProductRequest request);
