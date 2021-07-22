@@ -9,9 +9,6 @@ import org.springframework.context.annotation.Bean;
 
 import java.math.BigDecimal;
 
-/*
-    Source: https://github.com/eugenp/tutorials/tree/master/spring-boot-modules/spring-boot-angular
- */
 @SpringBootApplication
 public class EcommerceAppHexagonal {
 

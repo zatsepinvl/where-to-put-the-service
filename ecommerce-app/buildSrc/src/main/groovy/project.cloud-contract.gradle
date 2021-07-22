@@ -1,0 +1,15 @@
+plugins {
+    id "idea"
+    id "org.springframework.cloud.contract"
+}
+
+idea {
+    module {
+        testSourceDirs += project.sourceSets.contractTest.java.srcDirs
+        testSourceDirs += project.sourceSets.contractTest.resources.srcDirs
+    }
+}
+
+dependencies {
+    testImplementation "org.springframework.cloud:spring-cloud-starter-contract-verifier"
+}

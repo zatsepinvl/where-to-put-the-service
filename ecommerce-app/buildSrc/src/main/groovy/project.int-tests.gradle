@@ -11,9 +11,6 @@ sourceSets {
 
 idea {
     module {
-        testSourceDirs += project.sourceSets.contractTest.java.srcDirs
-        testSourceDirs += project.sourceSets.contractTest.resources.srcDirs
-
         testSourceDirs += project.sourceSets.intTest.java.srcDirs
         testSourceDirs += project.sourceSets.intTest.resources.srcDirs
     }

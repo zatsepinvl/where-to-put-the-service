@@ -1,5 +1,6 @@
 rootProject.name = "ecommerce-app"
 
+include "ecommerce-app-clean-arch"
 include "ecommerce-app-hexagonal-arch"
 include "ecommerce-app-yetanother-arch"
 include "ecommerce-app-layered-arch"

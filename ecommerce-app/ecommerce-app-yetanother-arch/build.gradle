@@ -1,6 +1,7 @@
 plugins {
     id "project.spring-jpa"
     id "project.int-tests"
+    id "project.cloud-contract"
     id "org.springframework.boot" version "2.5.2"
     id "io.spring.dependency-management" version "1.0.11.RELEASE"
     id "org.springframework.cloud.contract" version "3.0.3"
@@ -22,7 +23,6 @@ def flywayVersion = "7.11.2"
 
 dependencies {
     implementation "org.flywaydb:flyway-core:$flywayVersion"
-    testImplementation "org.springframework.cloud:spring-cloud-starter-contract-verifier"
 }
 
 

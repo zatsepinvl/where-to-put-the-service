@@ -1,6 +1,7 @@
-package com.effective.ecommerce.hexagonal.product.application.port.out;
+package com.effective.ecommerce.clean.product.usecase.port.out;
 
-import com.effective.ecommerce.hexagonal.product.domain.Product;
+
+import com.effective.ecommerce.clean.product.entity.Product;
 
 import java.util.Optional;
 

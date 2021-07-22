@@ -1,4 +1,4 @@
-package com.effective.ecommerce.hexagonal.product.adapter.out.persistence;
+package com.effective.ecommerce.clean.product.adapter.persistence;
 
 import org.springframework.data.repository.CrudRepository;
 

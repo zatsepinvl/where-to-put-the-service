@@ -1,4 +1,4 @@
-package com.effective.ecommerce.yetanother.product.domain.impl;
+package com.effective.ecommerce.clean.product.adapter.persistence;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

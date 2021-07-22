@@ -1,11 +1,12 @@
-package com.effective.ecommerce.hexagonal.product.adapter.out.persistence;
+package com.effective.ecommerce.clean.product.adapter.persistence;
 
-import com.effective.ecommerce.hexagonal.product.application.port.out.SaveProductOutPort;
-import com.effective.ecommerce.hexagonal.product.application.port.out.ReadProductOutPort;
-import com.effective.ecommerce.hexagonal.product.domain.Product;
+import com.effective.ecommerce.clean.product.entity.Product;
+import com.effective.ecommerce.clean.product.usecase.port.out.ReadProductOutPort;
+import com.effective.ecommerce.clean.product.usecase.port.out.SaveProductOutPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.time.ZonedDateTime;
 import java.util.Optional;
 
 @Repository
@@ -17,6 +18,9 @@ public class ProductPersistenceAdapter implements SaveProductOutPort, ReadProduc
     @Override
     public Product save(Product product) {
         var entity = entityMapper.fromProduct(product);
+        if (product.id() == null) {
+            entity.setCreatedAt(ZonedDateTime.now());
+        }
         entity = productRepository.save(entity);
         return entityMapper.toProduct(entity);
     }
