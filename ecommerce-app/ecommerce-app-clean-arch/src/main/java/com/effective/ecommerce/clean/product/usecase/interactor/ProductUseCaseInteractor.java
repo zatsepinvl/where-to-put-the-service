@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-class ProductServiceImpl implements ReadProductUseCase, WriteProductUseCase {
+class ProductUseCaseInteractor implements ReadProductUseCase, WriteProductUseCase {
 
     private final ReadProductOutPort readProductOutPort;
     private final SaveProductOutPort createProductOutPort;
