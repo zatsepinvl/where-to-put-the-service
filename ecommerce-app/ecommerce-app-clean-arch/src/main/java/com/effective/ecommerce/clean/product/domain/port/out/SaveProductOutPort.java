@@ -1,4 +1,4 @@
-package com.effective.ecommerce.clean.product.usecase.port.out;
+package com.effective.ecommerce.clean.product.domain.port.out;
 
 
 import com.effective.ecommerce.clean.product.model.Product;

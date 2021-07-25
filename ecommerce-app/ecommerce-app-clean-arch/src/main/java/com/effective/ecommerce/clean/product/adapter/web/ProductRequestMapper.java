@@ -1,7 +1,7 @@
 package com.effective.ecommerce.clean.product.adapter.web;
 
-import com.effective.ecommerce.clean.product.usecase.port.in.CreateProductCommand;
-import com.effective.ecommerce.clean.product.usecase.port.in.UpdateProductCommand;
+import com.effective.ecommerce.clean.product.domain.port.in.CreateProductCommand;
+import com.effective.ecommerce.clean.product.domain.port.in.UpdateProductCommand;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

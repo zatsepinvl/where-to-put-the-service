@@ -1,8 +1,8 @@
 package com.effective.ecommerce.clean.product.adapter.persistence;
 
 import com.effective.ecommerce.clean.product.model.Product;
-import com.effective.ecommerce.clean.product.usecase.port.out.ReadProductOutPort;
-import com.effective.ecommerce.clean.product.usecase.port.out.SaveProductOutPort;
+import com.effective.ecommerce.clean.product.domain.port.out.ReadProductOutPort;
+import com.effective.ecommerce.clean.product.domain.port.out.SaveProductOutPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

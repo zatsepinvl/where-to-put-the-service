@@ -1,4 +1,4 @@
-package com.effective.ecommerce.clean.product.usecase.port.in;
+package com.effective.ecommerce.clean.product.domain.port.in;
 
 import com.effective.ecommerce.clean.product.model.Product;
 import org.springframework.validation.annotation.Validated;

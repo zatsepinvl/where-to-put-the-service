@@ -1,12 +1,12 @@
-package com.effective.ecommerce.clean.product.usecase.service;
+package com.effective.ecommerce.clean.product.domain.service;
 
 import com.effective.ecommerce.clean.product.model.Product;
-import com.effective.ecommerce.clean.product.usecase.port.in.CreateProductCommand;
-import com.effective.ecommerce.clean.product.usecase.port.in.ReadProductUseCase;
-import com.effective.ecommerce.clean.product.usecase.port.in.UpdateProductCommand;
-import com.effective.ecommerce.clean.product.usecase.port.in.WriteProductUseCase;
-import com.effective.ecommerce.clean.product.usecase.port.out.ReadProductOutPort;
-import com.effective.ecommerce.clean.product.usecase.port.out.SaveProductOutPort;
+import com.effective.ecommerce.clean.product.domain.port.in.CreateProductCommand;
+import com.effective.ecommerce.clean.product.domain.port.in.ReadProductUseCase;
+import com.effective.ecommerce.clean.product.domain.port.in.UpdateProductCommand;
+import com.effective.ecommerce.clean.product.domain.port.in.WriteProductUseCase;
+import com.effective.ecommerce.clean.product.domain.port.out.ReadProductOutPort;
+import com.effective.ecommerce.clean.product.domain.port.out.SaveProductOutPort;
 import com.effective.ecommerce.hexagonal.exception.application.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

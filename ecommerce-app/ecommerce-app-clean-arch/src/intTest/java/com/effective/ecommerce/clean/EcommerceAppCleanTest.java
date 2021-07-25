@@ -1,7 +1,7 @@
 package com.effective.ecommerce.clean;
 
 import com.effective.ecommerce.clean.product.model.Product;
-import com.effective.ecommerce.clean.product.usecase.port.in.CreateProductCommand;
+import com.effective.ecommerce.clean.product.domain.port.in.CreateProductCommand;
 import com.effective.ecommerce.clean.testutils.postgres.EnablePostgresTestcontainer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
