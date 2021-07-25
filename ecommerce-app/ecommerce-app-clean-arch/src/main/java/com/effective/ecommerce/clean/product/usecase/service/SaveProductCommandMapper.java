@@ -1,6 +1,6 @@
-package com.effective.ecommerce.clean.product.usecase.interactor;
+package com.effective.ecommerce.clean.product.usecase.service;
 
-import com.effective.ecommerce.clean.product.entity.Product;
+import com.effective.ecommerce.clean.product.model.Product;
 import com.effective.ecommerce.clean.product.usecase.port.in.CreateProductCommand;
 import com.effective.ecommerce.clean.product.usecase.port.in.UpdateProductCommand;
 import org.mapstruct.Mapper;

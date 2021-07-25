@@ -1,4 +1,4 @@
-package com.effective.ecommerce.clean.product.entity;
+package com.effective.ecommerce.clean.product.model;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;

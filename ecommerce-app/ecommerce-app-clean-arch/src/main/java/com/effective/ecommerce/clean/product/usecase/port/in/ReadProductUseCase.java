@@ -1,6 +1,6 @@
 package com.effective.ecommerce.clean.product.usecase.port.in;
 
-import com.effective.ecommerce.clean.product.entity.Product;
+import com.effective.ecommerce.clean.product.model.Product;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.Min;

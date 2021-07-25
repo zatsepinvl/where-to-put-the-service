@@ -1,7 +1,7 @@
 package com.effective.ecommerce.clean.product.adapter.web;
 
 import com.effective.ecommerce.clean.product.usecase.port.in.ReadProductUseCase;
-import com.effective.ecommerce.clean.product.entity.Product;
+import com.effective.ecommerce.clean.product.model.Product;
 import com.effective.ecommerce.clean.product.usecase.port.in.WriteProductUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

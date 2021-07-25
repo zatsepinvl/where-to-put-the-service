@@ -1,6 +1,6 @@
 package com.effective.ecommerce.clean.product.adapter.persistence;
 
-import com.effective.ecommerce.clean.product.entity.Product;
+import com.effective.ecommerce.clean.product.model.Product;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
