@@ -3,6 +3,7 @@ package com.effective.ecommerce.clean;
 import com.effective.ecommerce.clean.product.model.Product;
 import com.effective.ecommerce.clean.product.usecase.port.in.CreateProductCommand;
 import com.effective.ecommerce.clean.testutils.postgres.EnablePostgresTestcontainer;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -26,11 +27,14 @@ public class EcommerceAppCleanTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private ObjectMapper mapper;
+
     @Test
     public void create_product() throws Exception {
         // Given
         var command = givenCreateProductCommand();
-        var request = givenHttpRequest(mockMvc)
+        var request = givenHttpRequest(mockMvc, mapper)
                 .andPath(POST, "/products")
                 .andBody(command);
 
@@ -49,11 +53,11 @@ public class EcommerceAppCleanTest {
     public void create_and_get_product() throws Exception {
         // Given
         var command = givenCreateProductCommand();
-        var expectedProduct = givenHttpRequest(mockMvc)
+        var expectedProduct =  givenHttpRequest(mockMvc, mapper)
                 .andPath(POST, "/products").andBody(command)
                 .makeRequest()
                 .getBody(Product.class);
-        var request = givenHttpRequest(mockMvc)
+        var request =  givenHttpRequest(mockMvc, mapper)
                 .andPath(GET, "/products/" + expectedProduct.id());
 
         // When

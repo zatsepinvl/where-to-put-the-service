@@ -81,7 +81,7 @@ public final class RequestSpec {
     }
 
 
-    public static RequestSpec givenHttpRequest(MockMvc mockMvc) {
-        return new RequestSpec(mockMvc, new ObjectMapper());
+    public static RequestSpec givenHttpRequest(MockMvc mockMvc, ObjectMapper objectMapper) {
+        return new RequestSpec(mockMvc, objectMapper);
     }
 }
