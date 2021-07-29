@@ -23,7 +23,6 @@ class OrderServiceImpl implements WriteOrderUseCase, ReadOrderUseCase {
 
     private final ReadProductUseCase readProductUseCase;
     private final SaveOrderOutPort saveOrderOutPort;
-    //private final ReadOrderOutPort readOrderOutPort;
 
     @Override
     public Order createOrder(CreateOrderCommand command) {
@@ -46,7 +45,7 @@ class OrderServiceImpl implements WriteOrderUseCase, ReadOrderUseCase {
     @Override
     public Order getOrderDescriptor(long orderId) {
         //ToDo
-        return null;
+        throw new UnsupportedOperationException("Not implemented yet.");
     }
 
     private List<OrderItem> getOrderItems(List<OrderItemData> orderItemsData) {
