@@ -1,8 +1,8 @@
 package com.effective.ecommerce.hexagonal.order.adapter.out.persistence;
 
 import com.effective.ecommerce.hexagonal.order.application.port.out.SaveOrderOutPort;
-import com.effective.ecommerce.hexagonal.order.domain.Order;
-import com.effective.ecommerce.hexagonal.order.domain.OrderItem;
+import com.effective.ecommerce.hexagonal.order.application.port.out.OrderData;
+import com.effective.ecommerce.hexagonal.order.application.port.out.OrderItemData;
 import com.effective.ecommerce.hexagonal.product.adapter.out.persistence.ProductEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -18,7 +18,7 @@ public class SaveOrderOutPortImpl implements SaveOrderOutPort {
     private final OrderItemRepository orderItemRepository;
 
     @Override
-    public Order saveOrder(Order order) {
+    public OrderData saveOrderData(OrderData order) {
         var entity = orderEntityMapper.fromOrder(order);
         if (order.id() == -1) {
             entity.setId(null);
@@ -28,7 +28,7 @@ public class SaveOrderOutPortImpl implements SaveOrderOutPort {
     }
 
     @Override
-    public List<OrderItem> saveOrderItems(Order order, List<OrderItem> orderItems) {
+    public List<OrderItemData> saveOrderItemsData(OrderData order, List<OrderItemData> orderItems) {
         var entitiesToSave = orderItems.stream()
                 .map(orderItem -> {
                     var productEntity = new ProductEntity();
@@ -41,7 +41,7 @@ public class SaveOrderOutPortImpl implements SaveOrderOutPort {
         var entities = orderItemRepository.saveAll(entitiesToSave);
         return StreamSupport.stream(entities.spliterator(), false)
                 .map(entity -> {
-                    return new OrderItem(entity.getPk().getProduct().getId(), entity.getQuantity());
+                    return new OrderItemData(entity.getPk().getProduct().getId(), entity.getQuantity());
                 }).toList();
     }
 }

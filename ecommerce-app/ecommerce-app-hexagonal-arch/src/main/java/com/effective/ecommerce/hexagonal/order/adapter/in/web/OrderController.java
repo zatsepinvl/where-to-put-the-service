@@ -2,7 +2,7 @@ package com.effective.ecommerce.hexagonal.order.adapter.in.web;
 
 import com.effective.ecommerce.hexagonal.order.application.port.in.CreateOrderCommand;
 import com.effective.ecommerce.hexagonal.order.application.port.in.WriteOrderUseCase;
-import com.effective.ecommerce.hexagonal.order.domain.OrderDescriptor;
+import com.effective.ecommerce.hexagonal.order.domain.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +23,7 @@ public class OrderController {
 
     @PostMapping
     @ResponseStatus(CREATED)
-    public OrderDescriptor createOrder(@RequestBody CreateOrderCommand form) {
+    public Order createOrder(@RequestBody CreateOrderCommand form) {
         return createOrderUseCase.createOrder(form);
     }
 

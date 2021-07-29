@@ -1,7 +1,7 @@
 package com.effective.ecommerce.hexagonal.order.application.port.in;
 
-import com.effective.ecommerce.hexagonal.order.domain.OrderDescriptor;
+import com.effective.ecommerce.hexagonal.order.domain.Order;
 
 public interface ReadOrderUseCase {
-    OrderDescriptor getOrderDescriptor(long orderId);
+    Order getOrderDescriptor(long orderId);
 }

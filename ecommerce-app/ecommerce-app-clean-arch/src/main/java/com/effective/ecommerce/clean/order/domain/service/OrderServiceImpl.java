@@ -31,7 +31,7 @@ class OrderServiceImpl implements WriteOrderUseCase, ReadOrderUseCase {
     @Override
     public Order createOrder(CreateOrderCommand command) {
         var newOrder = new OrderData(-1, LocalDate.now(), OrderStatus.CREATED);
-        var order = saveOrderOutPort.saveOrder(newOrder);
+        var orderData = saveOrderOutPort.saveOrder(newOrder);
         var orderItemsData = command.orderItems().stream()
                 .map(createOrderItemCommand -> {
                     var productId = createOrderItemCommand.productId();
@@ -41,9 +41,9 @@ class OrderServiceImpl implements WriteOrderUseCase, ReadOrderUseCase {
                     return new OrderItemData(productId, createOrderItemCommand.quantity());
                 })
                 .toList();
-        orderItemsData = saveOrderOutPort.saveOrderItemsData(order, orderItemsData);
+        orderItemsData = saveOrderOutPort.saveOrderItemsData(orderData, orderItemsData);
         var orderItems = getOrderItems(orderItemsData);
-        return new Order(order.id(), order.dateCreated(), order.status(), orderItems);
+        return createOrderFromData(orderData, orderItems);
     }
 
     @Override
