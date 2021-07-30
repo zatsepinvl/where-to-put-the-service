@@ -1,4 +1,4 @@
-package com.effective.ecommerce.clean.product.adapter.persistence;
+package com.effective.ecommerce.clean.product.adapter.persistence.impl;
 
 import com.effective.ecommerce.clean.product.model.Product;
 import com.effective.ecommerce.clean.product.domain.port.out.ReadProductOutPort;

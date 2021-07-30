@@ -1,6 +1,6 @@
-package com.effective.ecommerce.hexagonal.order.adapter.out.persistence;
+package com.effective.ecommerce.clean.order.adapter.persistence.jpa;
 
-import com.effective.ecommerce.hexagonal.product.adapter.out.persistence.ProductEntity;
+import com.effective.ecommerce.clean.product.adapter.persistence.jpa.ProductEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,11 +21,11 @@ import java.io.Serializable;
 public class OrderItemPK implements Serializable {
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "pk_order_id")
     private OrderEntity order;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "pk_product_id")
     private ProductEntity product;
 
 }

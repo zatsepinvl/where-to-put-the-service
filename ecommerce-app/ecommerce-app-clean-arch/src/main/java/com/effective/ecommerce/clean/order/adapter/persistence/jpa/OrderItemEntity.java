@@ -1,4 +1,4 @@
-package com.effective.ecommerce.hexagonal.order.adapter.out.persistence;
+package com.effective.ecommerce.clean.order.adapter.persistence.jpa;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

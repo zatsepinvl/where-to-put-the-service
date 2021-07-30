@@ -15,17 +15,9 @@ public class OrderController {
 
     private final WriteOrderUseCase createOrderUseCase;
 
-   /* @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public @NotNull Iterable<Order> list() {
-        return this.orderService.getAllOrders();
-    }*/
-
     @PostMapping
     @ResponseStatus(CREATED)
     public Order createOrder(@RequestBody CreateOrderCommand form) {
         return createOrderUseCase.createOrder(form);
     }
-
-
 }

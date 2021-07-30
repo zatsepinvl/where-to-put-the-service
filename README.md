@@ -11,7 +11,7 @@ business requirements.
 3. Evolve it when needed.
 4. Watch it throughout the project lifetime.
 
-## Goal
+## The Goal
 
 This repository contains the main assets of meetup presentation held by DataArt in Voronezh Russia July 28, 2021. You
 will find here:
@@ -19,4 +19,18 @@ will find here:
 1. `ecommerce-app` - examples of different architecture implementations.
 2. `Where to put the service.pptm` - presentation.
 3. `Where to put the service.drawio` - presentation diagrams.
+
+## Technologies used
+### Implementation
+* Java 16, records
+* Gradle
+* Spring (Boot, Data JPA, Web)
+* PostgreSQL
+* Flyway
+* Lombok (although be careful with Lombok and JPA: https://dzone.com/articles/lombok-and-jpa-what-may-go-wrong)
+* Mapstruct
+
+### Testing
+* Testcontainers
+* Spring Cloud Contracts (yetanother-arch only)
 

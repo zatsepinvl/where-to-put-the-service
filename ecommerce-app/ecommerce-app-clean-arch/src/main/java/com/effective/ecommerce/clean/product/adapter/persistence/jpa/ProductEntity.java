@@ -1,4 +1,4 @@
-package com.effective.ecommerce.clean.product.adapter.persistence;
+package com.effective.ecommerce.clean.product.adapter.persistence.jpa;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +17,7 @@ import java.time.ZonedDateTime;
 @ToString(onlyExplicitlyIncluded = true)
 @AllArgsConstructor
 @NoArgsConstructor
-class ProductEntity {
+public class ProductEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

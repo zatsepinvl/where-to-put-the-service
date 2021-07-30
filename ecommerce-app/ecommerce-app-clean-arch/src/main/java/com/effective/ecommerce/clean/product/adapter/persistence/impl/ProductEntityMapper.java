@@ -1,5 +1,6 @@
-package com.effective.ecommerce.clean.product.adapter.persistence;
+package com.effective.ecommerce.clean.product.adapter.persistence.impl;
 
+import com.effective.ecommerce.clean.product.adapter.persistence.jpa.ProductEntity;
 import com.effective.ecommerce.clean.product.model.Product;
 import org.mapstruct.Mapper;
 

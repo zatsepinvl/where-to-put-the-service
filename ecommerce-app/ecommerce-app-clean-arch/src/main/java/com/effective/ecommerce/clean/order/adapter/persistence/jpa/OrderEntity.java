@@ -1,11 +1,11 @@
-package com.effective.ecommerce.hexagonal.order.adapter.out.persistence;
+package com.effective.ecommerce.clean.order.adapter.persistence.jpa;
 
-import com.effective.ecommerce.hexagonal.order.domain.OrderStatus;
+import com.effective.ecommerce.clean.order.model.OrderStatus;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "orders")
@@ -18,7 +18,7 @@ public class OrderEntity {
     private Long id;
 
     @Column(nullable = false)
-    private LocalDate dateCreated;
+    private ZonedDateTime createdAt;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status;

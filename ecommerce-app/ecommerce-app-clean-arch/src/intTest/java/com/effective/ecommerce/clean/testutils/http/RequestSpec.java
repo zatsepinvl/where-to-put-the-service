@@ -28,6 +28,10 @@ public final class RequestSpec {
         return andMethod(GET);
     }
 
+    public RequestSpec andPost(String uri) {
+        return andPath(POST, uri);
+    }
+
     public RequestSpec andPost() {
         return andMethod(POST);
     }

@@ -17,11 +17,13 @@ public class ProductEntity {
     private Long id;
 
     @NotNull(message = "Product name is required.")
-    @Basic(optional = false)
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     private BigDecimal price;
 
+    @Column
     private String pictureUrl;
 
 }

@@ -6,7 +6,7 @@ import com.effective.ecommerce.clean.order.domain.port.in.WriteOrderUseCase;
 import com.effective.ecommerce.clean.order.domain.port.out.OrderData;
 import com.effective.ecommerce.clean.order.domain.port.out.OrderItemData;
 import com.effective.ecommerce.clean.order.domain.port.out.ReadOrderOutPort;
-import com.effective.ecommerce.clean.order.domain.port.out.SaveOrderOutPort;
+import com.effective.ecommerce.clean.order.domain.port.out.WriteOrderOutPort;
 import com.effective.ecommerce.clean.order.model.Order;
 import com.effective.ecommerce.clean.order.model.OrderItem;
 import com.effective.ecommerce.clean.order.model.OrderStatus;
@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Service
@@ -25,13 +25,13 @@ import java.util.List;
 class OrderServiceImpl implements WriteOrderUseCase, ReadOrderUseCase {
 
     private final ReadProductUseCase readProductUseCase;
-    private final SaveOrderOutPort saveOrderOutPort;
+    private final WriteOrderOutPort saveOrderOutPort;
     private final ReadOrderOutPort readOrderOutPort;
 
     @Override
     public Order createOrder(CreateOrderCommand command) {
-        var newOrder = new OrderData(-1, LocalDate.now(), OrderStatus.CREATED);
-        var orderData = saveOrderOutPort.saveOrder(newOrder);
+        var newOrder = new OrderData(-1, ZonedDateTime.now(), OrderStatus.CREATED);
+        var orderData = saveOrderOutPort.createOrderData(newOrder);
         var orderItemsData = command.orderItems().stream()
                 .map(createOrderItemCommand -> {
                     var productId = createOrderItemCommand.productId();
@@ -48,7 +48,7 @@ class OrderServiceImpl implements WriteOrderUseCase, ReadOrderUseCase {
 
     @Override
     //ToDo dont really like the way how it works, maybe will change in the future.
-    public Order getOrderDescriptor(long orderId) {
+    public Order getOrderById(long orderId) {
         var orderData = readOrderOutPort.getOrderDataById(orderId)
                 .orElseThrow(() -> new ResourceNotFoundException("Order not found with id " + orderId));
         var orderItemsData = readOrderOutPort.getOrderItemsByOrderId(orderId);
@@ -59,7 +59,7 @@ class OrderServiceImpl implements WriteOrderUseCase, ReadOrderUseCase {
     private Order createOrderFromData(OrderData orderData, List<OrderItem> orderItems) {
         return new Order(
                 orderData.id(),
-                orderData.dateCreated(),
+                orderData.createdAt(),
                 orderData.status(),
                 orderItems
         );
